@@ -1,4 +1,4 @@
-interest /usr/share/python-apt/templates/Ubuntu.mirrors
-interest /usr/share/mint-mirrors/linuxmint.list
-interest /usr/share/python-apt/templates/LinuxMint.mirrors
-interest /usr/share/python-apt/templates/Debian.mirrors
+interest-noawait /usr/share/python-apt/templates/Ubuntu.mirrors
+interest-noawait /usr/share/mint-mirrors/linuxmint.list
+interest-noawait /usr/share/python-apt/templates/LinuxMint.mirrors
+interest-noawait /usr/share/python-apt/templates/Debian.mirrors
