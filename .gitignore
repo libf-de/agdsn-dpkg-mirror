@@ -1,0 +1,5 @@
+debian/files
+debian/agdsn-mirror
+debian/debhelper-build-stamp
+debian/agdsn-mirror.substvars
+debian/.debhelper
