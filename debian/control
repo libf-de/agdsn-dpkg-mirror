@@ -1,0 +1,16 @@
+Source: agdsn-mirror
+Section: admin
+Priority: optional
+Maintainer: Fabian Schillig <xorgmc@gmail.com>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.6.0
+Homepage: https://github.com/libf-de/agdsn-dpkg-mirror
+Vcs-Browser: https://github.com/libf-de/agdsn-dpkg-mirror
+Vcs-Git: https://github.com/libf-de/agdsn-dpkg-mirror.git
+Rules-Requires-Root: no
+
+Package: agdsn-mirror
+Architecture: all
+Depends: ${misc:Depends} python-apt-common
+Description: Helper package to insert agdsn.de mirror into Debian/Ubuntu/Mint mirror lists.
+ This package will insert the ftp.agdsn.de mirror into python-apt-common mirror lists, so you can easily select in in package sources.

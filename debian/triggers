@@ -1,0 +1,4 @@
+interest /usr/share/python-apt/templates/Ubuntu.mirrors
+interest /usr/share/mint-mirrors/linuxmint.list
+interest /usr/share/python-apt/templates/LinuxMint.mirrors
+interest /usr/share/python-apt/templates/Debian.mirrors

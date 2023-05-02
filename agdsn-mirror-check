@@ -1,0 +1,40 @@
+#!/bin/bash
+
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root"
+  exit 1
+fi
+
+check_repo() {
+	[ -f "$2" ] || return 1
+	grep "$1" "$2" >/dev/null 2>&1
+	if [[ $? != 0 ]]; then
+		sed -i "s/#LOC:DE/#LOC:DE\n${1//\//\\\/}/g" "$2" >/dev/null 2>&1
+		[[ "$?" == 0 ]] && echo -e "\033[0;32mAdded AGDSN repository to $2 \033[0m" || echo -e "\033[0;31mFAILED to add AGDSN repository to $2! \033[0m"
+	else
+		echo -e "\033[0;36mFound AGDSN repository in $2 \033[0m"
+	fi
+	return 0
+}
+
+delete_repo() {
+        [ -f "$2" ] || return 1
+        grep "$1" "$2" >/dev/null 2>&1
+        if [[ $? == 0 ]]; then
+                sed -i "/${1//\//\\\/}/d" "$2" >/dev/null 2>&1
+                [[ "$?" == 0 ]] && echo -e "\033[0;32mRemoved AGDSN repository from $2 \033[0m" || echo -e "\033[0;31mFAILED to remove AGDSN repository from $2! \033[0m"
+        else
+                echo -e "\033[0;36mAGDSN repository not found in $2 \033[0m"
+        fi
+        return 0
+}
+
+ACTION="check_repo"
+
+[ "$1" = "-d" ] && ACTION="delete_repo"
+
+${ACTION} "http://ftp.agdsn.de/pub/mirrors/debian/" /usr/share/python-apt/templates/Debian.mirrors
+${ACTION} "https://ftp.agdsn.de/pub/mirrors/ubuntu/ubuntu/" /usr/share/python-apt/templates/Ubuntu.mirrors
+${ACTION} "https://ftp.agdsn.de/pub/mirrors/linux-mint/" /usr/share/python-apt/templates/LinuxMint.mirrors
+${ACTION} "https://ftp.agdsn.de/pub/mirrors/linux-mint/ Arbeitsgemeinschaft Dresdner Studentennetz" /usr/share/mint-mirrors/linuxmint.list
+
